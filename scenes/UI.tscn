@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dop1ow7ujglns"]
+
+[ext_resource type="Script" uid="uid://b0hsoqi6g11f1" path="res://scripts/UI.gd" id="1_dj8aq"]
+
+[node name="Ui" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_dj8aq")
+
+[node name="Label_life" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label_score" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
