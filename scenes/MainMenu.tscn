@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://o58ub0t1rt1d"]
+
+[ext_resource type="Script" uid="uid://ci8o3vyha6efn" path="res://scripts/main_menu.gd" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://5obniua11664" path="res://assets/images/background/80s-retro-arcade.jpg" id="2_0ykhv"]
+[ext_resource type="StyleBox" uid="uid://rlm8imhvt7me" path="res://assets/resources/unfocusButton.tres" id="3_2wh52"]
+[ext_resource type="StyleBox" uid="uid://bsokl1phpum52" path="res://assets/resources/pressButton.tres" id="4_l72w3"]
+[ext_resource type="StyleBox" uid="uid://dga2eu6d1l5l2" path="res://assets/resources/focusButton.tres" id="4_ow34m"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("2_0ykhv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 403.0
+offset_right = 703.0
+offset_bottom = 499.0
+
+[node name="ButtonNewGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_styles/normal = ExtResource("3_2wh52")
+theme_override_styles/pressed = ExtResource("4_l72w3")
+theme_override_styles/hover = ExtResource("4_ow34m")
+theme_override_styles/hover_pressed = ExtResource("4_l72w3")
+theme_override_styles/focus = ExtResource("4_ow34m")
+text = "New Game"
+
+[node name="ButtonSettings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_styles/normal = ExtResource("3_2wh52")
+theme_override_styles/pressed = ExtResource("4_l72w3")
+theme_override_styles/hover = ExtResource("4_ow34m")
+theme_override_styles/hover_pressed = ExtResource("4_l72w3")
+theme_override_styles/focus = ExtResource("4_ow34m")
+text = "Settings"
+
+[node name="ButtonExit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_styles/normal = ExtResource("3_2wh52")
+theme_override_styles/pressed = ExtResource("4_l72w3")
+theme_override_styles/hover = ExtResource("4_ow34m")
+theme_override_styles/hover_pressed = ExtResource("4_l72w3")
+theme_override_styles/focus = ExtResource("4_ow34m")
+text = "Quit"
+
+[node name="ASP_Music" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+
+[node name="ASP_Sound" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+
+[connection signal="pressed" from="VBoxContainer/ButtonNewGame" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="S5_ENT_Projet3"
-run/main_scene="uid://j3wco8ufdwfl"
+run/main_scene="uid://o58ub0t1rt1d"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
