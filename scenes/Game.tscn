@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://j3wco8ufdwfl"]
+[gd_scene load_steps=12 format=4 uid="uid://j3wco8ufdwfl"]
 
 [ext_resource type="Texture2D" uid="uid://qy751tm76o40" path="res://assets/sprites/tileset/Water.png" id="1_78awf"]
 [ext_resource type="Script" uid="uid://cxp65iclhk6b2" path="res://scripts/game.gd" id="1_s0nni"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dop1ow7ujglns" path="res://scenes/UI.tscn" id="3_aug50"]
 [ext_resource type="PackedScene" uid="uid://clq61vitabmdv" path="res://scenes/Player.tscn" id="4_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://c38pe2j52w6qp" path="res://scenes/Coin.tscn" id="6_aug50"]
+[ext_resource type="PackedScene" uid="uid://kvflsjexov0g" path="res://scenes/Enemy.tscn" id="7_kiw3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aug50"]
 texture = ExtResource("1_78awf")
@@ -162,5 +163,24 @@ position = Vector2(495, 397)
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(522, 553)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("7_kiw3p")]
+position = Vector2(249, 383)
+
+[node name="Boundaries1" type="Node2D" parent="Enemies"]
+
+[node name="LeftBoundaries" type="Marker2D" parent="Enemies/Boundaries1"]
+position = Vector2(225, 448)
+
+[node name="RightBoundaries" type="Marker2D" parent="Enemies/Boundaries1"]
+position = Vector2(814, 443)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("7_kiw3p")]
+position = Vector2(393, 425)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("7_kiw3p")]
+position = Vector2(292, 460)
 
 [editable path="Player"]
