@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://j3wco8ufdwfl"]
+[gd_scene load_steps=11 format=3 uid="uid://j3wco8ufdwfl"]
 
 [ext_resource type="Texture2D" uid="uid://qy751tm76o40" path="res://assets/sprites/tileset/Water.png" id="1_78awf"]
+[ext_resource type="Script" uid="uid://cxp65iclhk6b2" path="res://scripts/game.gd" id="1_s0nni"]
 [ext_resource type="Texture2D" uid="uid://dolhog345sa27" path="res://assets/sprites/tileset/Hills.png" id="2_s0nni"]
 [ext_resource type="PackedScene" uid="uid://dop1ow7ujglns" path="res://scenes/UI.tscn" id="3_aug50"]
 [ext_resource type="PackedScene" uid="uid://clq61vitabmdv" path="res://scenes/Player.tscn" id="4_kiw3p"]
@@ -264,6 +265,7 @@ sources/1 = SubResource("TileSetAtlasSource_nxtc6")
 sources/0 = SubResource("TileSetAtlasSource_c01mt")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_s0nni")
 
 [node name="TileMap_0_water" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_vcsgt")
