@@ -7,7 +7,7 @@ var MusicStream
 var MusicList = {}
 var SoundStream
 var SoundList = {}
-var resolutions = [Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920,1080)]
+var resolutions = [Vector2i(256, 256), Vector2i(338, 338), Vector2i(420,420)]
 
 func _ready():
 	# Initialize resolution dropdown
@@ -17,8 +17,8 @@ func _ready():
 		resolutionDropdown.add_item("%dx%d" % [res.x, res.y])
 		
 	load_audio_setting()
-	load_fullscreen_setting()
 	load_resolution_setting()
+	load_fullscreen_setting()
 	connect_signals()
 	# Grabs the audio slider to enable keyboard inputs
 	SettingsMenu = [$VBoxContainer/AudioSlider, $VBoxContainer/ResolutionDropdown, $VBoxContainer/FSCheck, $VBoxContainer/Button_Back]
@@ -36,12 +36,20 @@ func _ready():
 
 # Enables W and S to be used to navigate menu on top of the default (arrows)
 func _input(event):
+	var resolutionDropdown = $VBoxContainer/ResolutionDropdown
 	var previousIndex = ButtonIndex
+	
 	if (event is InputEventKey and event.pressed):
 		if ((event.keycode == KEY_W or event.keycode == KEY_UP) and ButtonIndex >= 1):
 			ButtonIndex -= 1
 		else: if ((event.keycode == KEY_S or event.keycode == KEY_DOWN) and ButtonIndex < SettingsMenu.size() -1):
 			ButtonIndex += 1
+		elif((event.keycode == KEY_A or event.keycode == KEY_LEFT) and ButtonIndex == 1):
+			if (resolutionDropdown.selected > 0):
+				resolutionDropdown.select(resolutionDropdown.selected - 1)
+		elif((event.keycode == KEY_D or event.keycode == KEY_RIGHT) and ButtonIndex == 1):
+			if (resolutionDropdown.selected < resolutions.size()):
+				resolutionDropdown.select(resolutionDropdown.selected + 1)
 		
 		if (previousIndex != ButtonIndex): 
 			SettingsMenu[ButtonIndex].grab_focus()
@@ -49,6 +57,8 @@ func _input(event):
 		
 		if (event.keycode == KEY_F or event.keycode == KEY_ENTER):
 			SettingsMenu[ButtonIndex].emit_signal("pressed")
+		elif(event.keycode == KEY_ESCAPE):
+			_on_button_back_pressed()
 
 # Hovering behaviors
 func _on_button_hovered(index):
@@ -140,4 +150,7 @@ func save_resolution_setting(value):
 	config.save(CONFIG_PATH)
 
 func _on_button_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	var main_menu_scene = load("res://scenes/core/MainMenu.tscn")
+	var menu = main_menu_scene.instantiate()
+	get_parent().add_child(menu)
+	queue_free()

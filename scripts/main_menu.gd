@@ -60,8 +60,12 @@ func _on_button_new_game_pressed():
 # Opens the setting menu
 func _on_button_settings_pressed():
 	$SFX_Pressed.play()
+	$SFX_Pressed.play()
 	await get_tree().create_timer(0.2).timeout	
-	get_tree().change_scene_to_file("res://scenes/SettingsMenu.tscn")
+	var gamemode_scene: PackedScene = preload("res://scenes/core/SettingsMenu.tscn")
+	var gamemode: Node = gamemode_scene.instantiate()
+	get_parent().add_child(gamemode)
+	queue_free()
 
 # Quit game
 func _on_button_exit_pressed():
