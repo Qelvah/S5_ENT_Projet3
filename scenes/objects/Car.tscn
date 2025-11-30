@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://kvflsjexov0g"]
+
+[ext_resource type="Script" uid="uid://cvvnx3v440h2t" path="res://scripts/enemy.gd" id="1_pkof2"]
+[ext_resource type="Texture2D" uid="uid://cgfi32asuvhis" path="res://assets/sprites/enemy/SPR_Car_01.png" id="2_pkof2"]
+[ext_resource type="Texture2D" uid="uid://cl0a3h2i5hao3" path="res://assets/sprites/enemy/SPR_Car_02.png" id="3_m8v0c"]
+[ext_resource type="Texture2D" uid="uid://c7ibh1ec71xwf" path="res://assets/sprites/enemy/SPR_Car_03.png" id="4_scrr2"]
+[ext_resource type="Texture2D" uid="uid://bdimo8a3eop2f" path="res://assets/sprites/enemy/SPR_Car_04.png" id="5_m3wqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly5gv"]
+size = Vector2(15, 12)
+
+[node name="Car" type="Area2D"]
+script = ExtResource("1_pkof2")
+model = 2
+cars = Array[Texture2D]([ExtResource("2_pkof2"), ExtResource("3_m8v0c"), ExtResource("4_scrr2"), ExtResource("5_m3wqn")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pkof2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ly5gv")

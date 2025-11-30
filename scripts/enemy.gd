@@ -1,18 +1,24 @@
 extends Area2D
 
-var speed = 90
-@onready var sprite = $AnimatedSprite2D
+@export var is_left: bool = false
+@export var speed: int = 20
+@export var model: int = 0
+@export var cars: Array[Texture2D] = []
 
-var direction = 1 # 1 = right, -1 = left
-var left_limit = 230
-var right_limit = 800
+var camera_offset: int = 50
+var limit: int = 256 + camera_offset
+
+var dir: int = 1
+
+func _ready() -> void:
+	$Sprite2D.texture = cars[model]
 
 func _process(delta):
-	position.x += speed * direction * delta
+	if is_left:
+		dir = -1
+		
+	position.x += speed * dir * delta
 
-	if position.x >= right_limit:
-		direction = -1
-		$AnimatedSprite2D.flip_h = true
-	elif position.x <= left_limit:
-		direction = 1
-		$AnimatedSprite2D.flip_h = false
+	if position.x >= limit or position.x <= -limit:
+		print("mort")
+		queue_free()

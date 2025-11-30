@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="S5_ENT_Projet3"
-run/main_scene="uid://o58ub0t1rt1d"
+run/main_scene="uid://dqrsy82d8c07l"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=256
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -52,3 +59,7 @@ interact={
 2d_physics/layer_1="water"
 2d_physics/layer_2="floor"
 2d_physics/layer_3="player"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

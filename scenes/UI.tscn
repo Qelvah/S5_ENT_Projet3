@@ -1,36 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://dop1ow7ujglns"]
+[gd_scene load_steps=3 format=3 uid="uid://dop1ow7ujglns"]
 
 [ext_resource type="Script" uid="uid://b0hsoqi6g11f1" path="res://scripts/UI.gd" id="1_dj8aq"]
+[ext_resource type="Theme" uid="uid://c722wj6xsd7wq" path="res://assets/fonts/DefaultText.tres" id="2_ro3t7"]
 
-[node name="Ui" type="Node2D"]
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_dj8aq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 84.0
-offset_top = 18.0
-offset_right = 132.0
-offset_bottom = 68.0
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 60.0
 
-[node name="Label_lives_amount" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-text = "3"
 
-[node name="Label_score_amount" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="L_Lives" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "0"
-
-[node name="Label_life" type="Label" parent="CanvasLayer"]
-offset_left = 21.0
-offset_top = 16.0
-offset_right = 69.0
-offset_bottom = 39.0
+theme = ExtResource("2_ro3t7")
 text = "Lives:"
 
-[node name="Label_score" type="Label" parent="CanvasLayer"]
-offset_left = 21.0
-offset_top = 45.0
-offset_right = 69.0
-offset_bottom = 68.0
+[node name="Lives" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ro3t7")
+text = "3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="L_Score" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ro3t7")
 text = "Score:"
+
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ro3t7")
+text = "0"

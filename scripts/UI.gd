@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@onready var score_amount = $VBoxContainer/Label_score_amount
-@onready var lives_amount = $VBoxContainer/Label_lives_amount
 var game_node
 
 func _ready():
@@ -12,7 +10,7 @@ func _ready():
 	update_score(game_node.score)
 	
 func update_score(new_score):
-	score_amount.text = str(new_score)
+	$VBoxContainer/HBoxContainer2/Score.text = str(new_score)
 
 func update_lives(new_lives):
-	lives_amount.text = str(new_lives)
+	$VBoxContainer/HBoxContainer/Lives.text = str(new_lives)

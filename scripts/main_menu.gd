@@ -3,18 +3,14 @@ extends Control
 const CONFIG_PATH := "user://settings.cfg"
 var Buttons = []
 var ButtonIndex = 0
-var MusicStream
-var MusicList = {}
-var SoundStream
-var SoundList = {}
 var resolutions = [Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920,1080)]
 
 func _ready():
 	# Initialize button array and focus first button
 	Buttons = [
-		$VBoxContainer/ButtonNewGame,
-		$VBoxContainer/ButtonSettings,
-		$VBoxContainer/ButtonExit,
+		$CanvasLayer/VBoxContainer/ButtonNewGame,
+		$CanvasLayer/VBoxContainer/ButtonSettings,
+		$CanvasLayer/VBoxContainer/ButtonExit,
 	]
 	Buttons[ButtonIndex].grab_focus()
 	
@@ -24,17 +20,7 @@ func _ready():
 	# Records mouse hovering
 	for i in range(Buttons.size()):
 		Buttons[i].connect("mouse_entered", Callable(self, "_on_button_hovered").bind(i))
-	
-	# Initialize music array and play the proper music
-	MusicList["menu"] = preload("res://assets/sounds/music/05 - Login01.mp3")
-	MusicStream = $VBoxContainer/ASP_Music
-	activateAudio("music", "menu")
-	
-	# Initialize sound array
-	SoundStream = $VBoxContainer/ASP_Sound
-	SoundList["click"] = preload("res://assets/sounds/mixkit-select-click-1109.wav")
-	SoundList["move"] = preload("res://assets/sounds/click-buttons-ui-menu-sounds-effects-button-13-205396.mp3")
-	
+		
 func load_settings():
 	load_audio_setting()
 	load_fullscreen_setting()
@@ -51,7 +37,7 @@ func _input(event):
 		
 		if (previousIndex != ButtonIndex): 
 			Buttons[ButtonIndex].grab_focus()
-			activateAudio("sound", "move")
+			$SFX_Hover.play()
 		
 		if (event.keycode == KEY_F or event.keycode == KEY_ENTER):
 			Buttons[ButtonIndex].emit_signal("pressed")
@@ -60,23 +46,26 @@ func _input(event):
 func _on_button_hovered(index):
 	ButtonIndex = index
 	Buttons[ButtonIndex].grab_focus()
-	activateAudio("sound", "move")
+	$SFX_Hover.play()
 
 # Launches the game
 func _on_button_new_game_pressed():
-	activateAudio("sound", "click")
+	$SFX_Pressed.play()
 	await get_tree().create_timer(0.2).timeout	
-	get_tree().change_scene_to_file('res://scenes/Game.tscn')
-
+	var gamemode_scene: PackedScene = preload("res://scenes/core/Game.tscn")
+	var gamemode: Node = gamemode_scene.instantiate()
+	get_parent().add_child(gamemode)
+	queue_free()
+	
 # Opens the setting menu
 func _on_button_settings_pressed():
-	activateAudio("sound", "click")
+	$SFX_Pressed.play()
 	await get_tree().create_timer(0.2).timeout	
 	get_tree().change_scene_to_file("res://scenes/SettingsMenu.tscn")
 
 # Quit game
 func _on_button_exit_pressed():
-	activateAudio("sound", "click")
+	$SFX_Pressed.play()
 	await get_tree().create_timer(0.2).timeout	
 	get_tree().quit()
 
@@ -91,7 +80,7 @@ func load_audio_setting():
 
 func load_fullscreen_setting():
 	var config = ConfigFile.new()
-	var err = config.load(CONFIG_PATH)
+	var err: int = config.load(CONFIG_PATH)
 	
 	if (err == OK): 
 		var fullscreen = config.get_value('video', 'fullscreen', false)
@@ -107,12 +96,3 @@ func load_resolution_setting():
 	if(err == OK):
 		var resolutionSaved = config.get_value('video', 'resolution', 0)
 		DisplayServer.window_set_size(resolutions[resolutionSaved])
-
-# Activates music or sound based on index
-func activateAudio(type, key):
-	if (type == "music"):
-		MusicStream.stream = MusicList[key]
-		MusicStream.play()
-	else: if (type == "sound"):
-		SoundStream.stream = SoundList[key]
-		SoundStream.play()

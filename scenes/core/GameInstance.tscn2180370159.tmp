@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqrsy82d8c07l"]
+
+[ext_resource type="PackedScene" uid="uid://o58ub0t1rt1d" path="res://scenes/core/MainMenu.tscn" id="1_ppp87"]
+
+[node name="GameInstance" type="Node2D"]
+
+[node name="MainMenu" parent="." instance=ExtResource("1_ppp87")]
+offset_right = 0.0
+offset_bottom = 0.0
