@@ -59,11 +59,7 @@ func lose_life():
 	on_player_death.emit()
 	
 	if lives < 1:
-		var gamemode_scene: PackedScene = preload("res://scenes/core/MainMenu.tscn")
-		var gamemode: Node = gamemode_scene.instantiate()
-		if (gamemode == null):
-			print('null')
-		else: 
-			print('goodie')
-		get_parent().get_parent().add_child(gamemode)
+		var main_menu_scene = load("res://scenes/core/MainMenu.tscn")
+		var menu = main_menu_scene.instantiate()
+		get_parent().get_parent().add_child(menu)
 		get_parent().queue_free()
