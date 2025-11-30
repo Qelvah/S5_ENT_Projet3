@@ -37,6 +37,7 @@ func _ready():
 # Enables W and S to be used to navigate menu on top of the default (arrows)
 func _input(event):
 	var resolutionDropdown = $VBoxContainer/ResolutionDropdown
+	var audioSlider = $VBoxContainer/AudioSlider
 	var previousIndex = ButtonIndex
 	
 	if (event is InputEventKey and event.pressed):
@@ -44,6 +45,12 @@ func _input(event):
 			ButtonIndex -= 1
 		else: if ((event.keycode == KEY_S or event.keycode == KEY_DOWN) and ButtonIndex < SettingsMenu.size() -1):
 			ButtonIndex += 1
+		elif((event.keycode == KEY_A or event.keycode == KEY_LEFT) and ButtonIndex == 0):
+			if (audioSlider.value > 0):
+				audioSlider.value -= 0.01
+		elif((event.keycode == KEY_D or event.keycode == KEY_RIGHT) and ButtonIndex == 0):
+			if (audioSlider.value < 1):
+				audioSlider.value += 0.01
 		elif((event.keycode == KEY_A or event.keycode == KEY_LEFT) and ButtonIndex == 1):
 			if (resolutionDropdown.selected > 0):
 				resolutionDropdown.select(resolutionDropdown.selected - 1)
