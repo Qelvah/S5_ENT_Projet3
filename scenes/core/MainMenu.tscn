@@ -5,9 +5,9 @@
 [ext_resource type="Theme" uid="uid://c722wj6xsd7wq" path="res://assets/fonts/DefaultText.tres" id="3_kperw"]
 [ext_resource type="StyleBox" uid="uid://bsokl1phpum52" path="res://assets/resources/pressButton.tres" id="4_l72w3"]
 [ext_resource type="StyleBox" uid="uid://dga2eu6d1l5l2" path="res://assets/resources/focusButton.tres" id="4_ow34m"]
-[ext_resource type="AudioStream" uid="uid://b4fywky7y6ytv" path="res://assets/sounds/SFX_Click.wav" id="6_kperw"]
-[ext_resource type="AudioStream" uid="uid://vtf20e5pdtlb" path="res://assets/sounds/music/BGM_Menu.mp3" id="6_u5y8t"]
-[ext_resource type="AudioStream" uid="uid://b1arcdv85lfeb" path="res://assets/sounds/SFX_Hover.mp3" id="8_q2pbu"]
+[ext_resource type="AudioStream" uid="uid://dkgb38gv35f2w" path="res://assets/sounds/SFX_Click.wav" id="6_kperw"]
+[ext_resource type="AudioStream" uid="uid://dkmyssh301br" path="res://assets/sounds/music/BGM_Menu.mp3" id="6_u5y8t"]
+[ext_resource type="AudioStream" uid="uid://cmuuin1hfumlh" path="res://assets/sounds/SFX_Hover.mp3" id="8_q2pbu"]
 
 [sub_resource type="Gradient" id="Gradient_meuhk"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

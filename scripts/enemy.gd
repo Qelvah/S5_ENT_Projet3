@@ -12,6 +12,9 @@ var dir: int = 1
 
 func _ready() -> void:
 	$Sprite2D.texture = cars[model]
+	
+	if (is_left):
+		$Sprite2D.flip_h = true
 
 func _process(delta):
 	if is_left:
@@ -20,5 +23,7 @@ func _process(delta):
 	position.x += speed * dir * delta
 
 	if position.x >= limit or position.x <= -limit:
-		print("mort")
 		queue_free()
+
+func _on_body_entered(body: Node2D) -> void:
+	body.lose_life()

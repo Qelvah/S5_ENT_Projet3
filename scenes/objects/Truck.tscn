@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://col3jkthsd3ek"]
+
+[ext_resource type="PackedScene" uid="uid://kvflsjexov0g" path="res://scenes/objects/Car.tscn" id="1_utqtl"]
+[ext_resource type="Texture2D" uid="uid://dtvem5pvxg0s6" path="res://assets/sprites/enemy/SPR_Car_05.png" id="2_fs530"]
+
+[node name="Truck" instance=ExtResource("1_utqtl")]
+cars = Array[Texture2D]([ExtResource("2_fs530")])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fs530")
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(1.7999998, 1)

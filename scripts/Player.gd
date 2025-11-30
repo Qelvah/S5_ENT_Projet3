@@ -4,10 +4,10 @@ var input_vector := Vector2.ZERO
 var is_moving: bool = false
 var speed: int = 16
 
-@onready var sprite := $AnimatedSprite2D
+var lives = 3
+signal on_player_death()
 
-	
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if is_moving:
 		return  # empêchez un nouveau mouvement tant que le tween n'est pas fini
 		
@@ -52,3 +52,18 @@ func on_tween_finished():
 	$Sprite.animation = "idle"
 	is_moving = false
 	position = position.floor() # pixel perfect
+
+func lose_life():
+	global_position = get_parent().get_node('SpawnPoint').global_position
+	lives -= 1
+	on_player_death.emit()
+	
+	if lives < 1:
+		var gamemode_scene: PackedScene = preload("res://scenes/core/MainMenu.tscn")
+		var gamemode: Node = gamemode_scene.instantiate()
+		if (gamemode == null):
+			print('null')
+		else: 
+			print('goodie')
+		get_parent().get_parent().add_child(gamemode)
+		get_parent().queue_free()
