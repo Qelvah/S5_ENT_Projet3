@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://j3wco8ufdwfl"]
+[gd_scene load_steps=10 format=4 uid="uid://j3wco8ufdwfl"]
 
 [ext_resource type="Script" uid="uid://cxp65iclhk6b2" path="res://scripts/game.gd" id="1_h0av6"]
 [ext_resource type="PackedScene" uid="uid://dop1ow7ujglns" path="res://scenes/UI.tscn" id="4_ntrep"]
 [ext_resource type="Texture2D" uid="uid://cpyfqgcprdrwy" path="res://assets/sprites/tileset/TS_Main.png" id="4_u8fy7"]
 [ext_resource type="PackedScene" uid="uid://clq61vitabmdv" path="res://scenes/Player.tscn" id="5_5rnqg"]
 [ext_resource type="PackedScene" uid="uid://nv3o2yn4gwv7" path="res://scenes/CarSpawner.tscn" id="5_s5uwl"]
+[ext_resource type="Script" uid="uid://dgncqgdvsk18o" path="res://scripts/coin_area.gd" id="6_s5uwl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgk1x"]
 texture = ExtResource("4_u8fy7")
@@ -30,6 +31,9 @@ texture_region_size = Vector2i(8, 8)
 [sub_resource type="TileSet" id="TileSet_s5uwl"]
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_xgk1x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5uwl"]
+size = Vector2(256, 80)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h0av6")
@@ -81,5 +85,13 @@ position = Vector2(-16, 152)
 scale = Vector2(-206023020000, -27619.537)
 lane = 4
 speed = 45
+
+[node name="Coins" type="Node2D" parent="."]
+position = Vector2(128, 184)
+
+[node name="CoinArea" type="CollisionShape2D" parent="Coins"]
+visible = false
+shape = SubResource("RectangleShape2D_s5uwl")
+script = ExtResource("6_s5uwl")
 
 [connection signal="on_player_death" from="Player" to="." method="on_player_death"]

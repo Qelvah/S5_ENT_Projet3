@@ -54,9 +54,12 @@ func _input(event):
 		elif((event.keycode == KEY_A or event.keycode == KEY_LEFT) and ButtonIndex == 1):
 			if (resolutionDropdown.selected > 0):
 				resolutionDropdown.select(resolutionDropdown.selected - 1)
+				DisplayServer.window_set_size(resolutions[resolutionDropdown.selected])
 		elif((event.keycode == KEY_D or event.keycode == KEY_RIGHT) and ButtonIndex == 1):
 			if (resolutionDropdown.selected < resolutions.size()):
 				resolutionDropdown.select(resolutionDropdown.selected + 1)
+				DisplayServer.window_set_size(resolutions[resolutionDropdown.selected])
+
 		
 		if (previousIndex != ButtonIndex): 
 			SettingsMenu[ButtonIndex].grab_focus()

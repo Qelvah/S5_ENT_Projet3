@@ -1,9 +1,7 @@
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "CharacterBody2D":
+	if body.name == "Player":
 		var game_node = get_parent().get_parent().get_parent()
 		game_node.add_score(1)
-		# temporary -1 life here to test death
-		game_node.lose_life()
 		self.queue_free()
