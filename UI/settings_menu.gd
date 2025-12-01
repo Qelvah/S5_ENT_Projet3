@@ -14,9 +14,9 @@ var SoundStream                              		# AudioStreamPlayer pour les sons
 var SoundList: Dictionary[Variant, Variant] = {}    # Dictionnaire des effets sonores
 
 var resolutions: Array[Variant] = [          # Résolutions disponibles
-	Vector2i(1280, 720),
-	Vector2i(1600, 900),
-	Vector2i(1920,1080)
+	Vector2i(256, 256),
+	Vector2i(338, 338),
+	Vector2i(420, 420)
 ]
 
 

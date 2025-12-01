@@ -4,7 +4,8 @@ class_name Player
 #         VARIABLES
 # ----------------------------
 var input_vector := Vector2.ZERO            # Direction du mouvement (unitaire)
-var is_moving: bool = false                # Vérifie si un mouvement est déjà en cours
+var is_moving: bool = false					# Vérifie si un mouvement est déjà en cours
+var is_hit: bool = false             		# Vérifie si le joueur est déjà touché
 var speed: int = 16                        # Distance parcourue par saut
 var lives: int = 3                         # Nombre de vies du joueur
 var log_partner : Node = null
@@ -80,14 +81,18 @@ func on_tween_finished():
 
 	# Assure un positionnement propre sur la grille (pixel perfect)
 	position = position.floor()
+	if is_hit: is_hit = false
 
 
 # ----------------------------
 #       GESTION DES VIES
 # ----------------------------
 func die():
-	lives -= 1
-	on_player_death.emit()
+	if (is_hit != true):
+		is_hit = true
+		print(lives)
+		lives -= 1
+		on_player_death.emit()
 
 	if lives < 1:
 		on_player_gameover.emit()
