@@ -230,7 +230,7 @@ func save_resolution_setting(value):
 #          RETOUR AU MENU
 # -----------------------------------
 func _on_button_back_pressed() -> void:
-	var main_menu_scene: PackedScene = load("res://scenes/core/MainMenu.tscn")
+	var main_menu_scene: PackedScene = load("res://UI/main_menu.tscn")
 	var menu: Node = main_menu_scene.instantiate()
 	get_parent().add_child(menu)
 	queue_free()

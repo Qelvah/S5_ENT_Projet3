@@ -7,6 +7,8 @@ var input_vector := Vector2.ZERO            # Direction du mouvement (unitaire)
 var is_moving: bool = false                # Vérifie si un mouvement est déjà en cours
 var speed: int = 16                        # Distance parcourue par saut
 var lives: int = 3                         # Nombre de vies du joueur
+var log_partner : Node = null
+var water_safe = false
 var move_tween: Tween = null               # Tween responsable du déplacement
 
 # ----------------------------
@@ -36,6 +38,7 @@ func _process(_delta) -> void:
 		input_vector.x = -1
 	elif Input.is_action_just_pressed("walk_right"):
 		input_vector.x = 1
+		
 
 	# Déplace le joueur si une direction a été entrée
 	if input_vector != Vector2.ZERO:
@@ -59,7 +62,8 @@ func move_player(dir: Vector2):
 
 	# Position d'arrivée
 	var target_pos: Vector2 = position + dir * speed
-	
+	if (log_partner != null):
+		target_pos += Vector2(log_partner.speed * (-1 if log_partner.is_left else 1) * 0.2, 0)	
 	# Animation de saut
 	$Sprite.animation = "jump"
 
