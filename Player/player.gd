@@ -94,10 +94,10 @@ func die():
 		lives -= 1
 		on_player_death.emit()
 
-	if lives < 1:
-		on_player_gameover.emit()
-	else:
-		respawn()
+		if lives < 1:
+			on_player_gameover.emit()
+		else:
+			respawn()
 
 # ----------------------------
 #       RESPAWN DU PLAYER
