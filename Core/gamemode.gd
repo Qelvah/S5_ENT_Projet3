@@ -42,6 +42,7 @@ func on_player_death() -> void:
 # ----------------------------
 func on_an_end_reached() -> void:
 	end_reach_amount += 1
+	add_score(3)
 	if end_reach_amount == 5 :
 		finish_loop()
 	else:
