@@ -15,6 +15,7 @@ class_name CarSpawner
 @onready var car_scene: PackedScene = preload("res://Placeables/Cars/car.tscn")
 @onready var truck_scene: PackedScene = preload("res://Placeables/Cars/truck.tscn")
 
+var spacing := 0
 
 # -----------------------------------
 #          INITIALISATION
@@ -24,8 +25,11 @@ func _ready() -> void:
 	$Timer.wait_time = timer
 
 	# --- Distance entre voitures basée sur timer + speed ---
-	var spacing := car_speed * timer
-
+	spacing = car_speed * timer
+	
+	initiate()
+	
+func initiate():
 	# Génère 3 véhicules espacés sur la voie au début
 	for i in range(1,4):
 		var car := instantiate_car()
@@ -39,6 +43,7 @@ func _ready() -> void:
 			car.global_position.x = global_position.x + offset
 			
 		get_parent().get_parent().get_node("Cars").add_child(car)
+
 
 
 # -----------------------------------
