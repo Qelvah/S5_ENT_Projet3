@@ -90,21 +90,21 @@ go_left = true
 car_speed = 40
 timer = 3
 
-[node name="Ends" type="Node" parent="."]
+[node name="EndPonds" type="Node" parent="."]
 
-[node name="EndPond" parent="Ends" instance=ExtResource("7_tjrio")]
+[node name="EndPond" parent="EndPonds" instance=ExtResource("7_tjrio")]
 position = Vector2(32, 40)
 
-[node name="EndPond2" parent="Ends" instance=ExtResource("7_tjrio")]
+[node name="EndPond2" parent="EndPonds" instance=ExtResource("7_tjrio")]
 position = Vector2(128, 40)
 
-[node name="EndPond3" parent="Ends" instance=ExtResource("7_tjrio")]
+[node name="EndPond3" parent="EndPonds" instance=ExtResource("7_tjrio")]
 position = Vector2(80, 40)
 
-[node name="EndPond4" parent="Ends" instance=ExtResource("7_tjrio")]
+[node name="EndPond4" parent="EndPonds" instance=ExtResource("7_tjrio")]
 position = Vector2(176, 40)
 
-[node name="EndPond5" parent="Ends" instance=ExtResource("7_tjrio")]
+[node name="EndPond5" parent="EndPonds" instance=ExtResource("7_tjrio")]
 position = Vector2(224, 40)
 
 [node name="Logs" type="Node" parent="."]
