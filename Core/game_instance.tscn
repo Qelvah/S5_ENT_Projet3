@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqrsy82d8c07l"]
+
+[ext_resource type="Script" uid="uid://da3iwdg3lyp3s" path="res://Core/game_instance.gd" id="1_8tgpj"]
+[ext_resource type="PackedScene" uid="uid://o58ub0t1rt1d" path="res://UI/main_menu.tscn" id="1_kfnhb"]
+
+[node name="GameInstance" type="Node2D"]
+script = ExtResource("1_8tgpj")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_kfnhb")]
+offset_right = 0.0
+offset_bottom = 0.0

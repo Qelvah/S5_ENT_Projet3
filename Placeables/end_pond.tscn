@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy1btlwtw7x4p"]
+
+[ext_resource type="Texture2D" uid="uid://b4jgdyj7l8pj2" path="res://Resources/Objects/End Frogs/ASPR_End_Frog.png" id="1_48gjo"]
+[ext_resource type="Script" uid="uid://ba6742qlha42" path="res://Placeables/end_pond.gd" id="1_dpof4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpof4"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxxmx"]
+atlas = ExtResource("1_48gjo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8yg5"]
+atlas = ExtResource("1_48gjo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35djr"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_rxxmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8yg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EndPond" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_dpof4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dpof4")
+
+[node name="FrogSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_35djr")
+frame_progress = 0.8952913
+
+[connection signal="body_entered" from="." to="." method="_on_player_entered"]

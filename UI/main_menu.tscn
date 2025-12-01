@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://o58ub0t1rt1d"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_t4ff4"]
+[ext_resource type="Theme" uid="uid://c722wj6xsd7wq" path="res://Resources/UI/Fonts/DefaultText.tres" id="2_w5vcv"]
+[ext_resource type="StyleBox" uid="uid://rlm8imhvt7me" path="res://Resources/UI/Styles/Buttons/unfocusButton.tres" id="3_d2d4f"]
+[ext_resource type="StyleBox" uid="uid://bsokl1phpum52" path="res://Resources/UI/Styles/Buttons/pressButton.tres" id="4_6vw7e"]
+[ext_resource type="StyleBox" uid="uid://dga2eu6d1l5l2" path="res://Resources/UI/Styles/Buttons/focusButton.tres" id="5_qrfef"]
+[ext_resource type="AudioStream" uid="uid://dkmyssh301br" path="res://Resources/UI/BGM_Menu.mp3" id="6_csrb3"]
+[ext_resource type="AudioStream" uid="uid://dkgb38gv35f2w" path="res://Resources/UI/Sounds/SFX_Click.wav" id="7_wxllh"]
+[ext_resource type="AudioStream" uid="uid://cmuuin1hfumlh" path="res://Resources/UI/Sounds/SFX_Hover.mp3" id="8_avhca"]
+
+[sub_resource type="Gradient" id="Gradient_meuhk"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kperw"]
+gradient = SubResource("Gradient_meuhk")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -256.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4ff4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 684.8385
+offset_bottom = 288.22363
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.28591368, 0.49252704)
+texture = SubResource("GradientTexture2D_kperw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="ButtonNewGame" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme = ExtResource("2_w5vcv")
+theme_override_styles/normal = ExtResource("3_d2d4f")
+theme_override_styles/pressed = ExtResource("4_6vw7e")
+theme_override_styles/hover = ExtResource("5_qrfef")
+theme_override_styles/hover_pressed = ExtResource("4_6vw7e")
+theme_override_styles/focus = ExtResource("5_qrfef")
+text = "NEW GAME"
+
+[node name="ButtonSettings" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme = ExtResource("2_w5vcv")
+theme_override_styles/normal = ExtResource("3_d2d4f")
+theme_override_styles/pressed = ExtResource("4_6vw7e")
+theme_override_styles/hover = ExtResource("5_qrfef")
+theme_override_styles/hover_pressed = ExtResource("4_6vw7e")
+theme_override_styles/focus = ExtResource("5_qrfef")
+text = "SETTINGS"
+
+[node name="ButtonExit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme = ExtResource("2_w5vcv")
+theme_override_styles/normal = ExtResource("3_d2d4f")
+theme_override_styles/pressed = ExtResource("4_6vw7e")
+theme_override_styles/hover = ExtResource("5_qrfef")
+theme_override_styles/hover_pressed = ExtResource("4_6vw7e")
+theme_override_styles/focus = ExtResource("5_qrfef")
+text = "QUIT"
+
+[node name="BGM_Menu" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(568, 499)
+stream = ExtResource("6_csrb3")
+autoplay = true
+
+[node name="SFX_Pressed" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(568, 499)
+scale = Vector2(1.0027318, 0.9978743)
+stream = ExtResource("7_wxllh")
+
+[node name="SFX_Hover" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(568, 499)
+stream = ExtResource("8_avhca")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonNewGame" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

@@ -22,6 +22,17 @@ window/size/viewport_height=256
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[file_customization]
+
+folder_colors={
+"res://Core/": "pink",
+"res://Placeables/": "purple",
+"res://Placeables/Cars/": "red",
+"res://Player/": "green",
+"res://Resources/": "yellow",
+"res://UI/": "teal"
+}
+
 [input]
 
 walk_up={
@@ -59,6 +70,8 @@ interact={
 2d_physics/layer_1="water"
 2d_physics/layer_2="floor"
 2d_physics/layer_3="player"
+2d_physics/layer_4="car"
+2d_physics/layer_5="end"
 
 [rendering]
 
