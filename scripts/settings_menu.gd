@@ -25,14 +25,14 @@ func _ready():
 	SettingsMenu[ButtonIndex].grab_focus()
 	
 	# Initialize music array and play the proper music
-	MusicList["menu"] = preload("res://assets/sounds/music/05 - Login01.mp3")
+	MusicList["menu"] = preload("res://assets/sounds/music/BGM_Menu.mp3")
 	MusicStream = $VBoxContainer/ASP_Music
 	activateAudio("music", "menu")
 	
 	# Initialize sound array
 	SoundStream = $VBoxContainer/ASP_Sound
-	SoundList["click"] = preload("res://assets/sounds/mixkit-select-click-1109.wav")
-	SoundList["move"] = preload("res://assets/sounds/click-buttons-ui-menu-sounds-effects-button-13-205396.mp3")
+	SoundList["click"] = preload("res://assets/sounds/SFX_Click.wav")
+	SoundList["move"] = preload("res://assets/sounds/SFX_Hover.mp3")
 
 # Enables W and S to be used to navigate menu on top of the default (arrows)
 func _input(event):

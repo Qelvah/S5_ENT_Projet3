@@ -4,8 +4,11 @@ var input_vector := Vector2.ZERO
 var is_moving: bool = false
 var speed: int = 16
 
-var lives = 3
+var lives: int = 3
 signal on_player_death()
+
+
+var move_tween: Tween = null
 
 func _process(_delta) -> void:
 	if is_moving:
@@ -43,10 +46,9 @@ func move_player(dir: Vector2):
 	
 	$Sprite.animation = "jump"
 
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "position", target_pos, 0.2)
-
-	tween.connect("finished", on_tween_finished)
+	move_tween = create_tween()
+	move_tween.tween_property(self, "position", target_pos, 0.2)
+	move_tween.connect("finished", on_tween_finished)
 	
 func on_tween_finished():
 	$Sprite.animation = "idle"
@@ -54,6 +56,10 @@ func on_tween_finished():
 	position = position.floor() # pixel perfect
 
 func lose_life():
+	if move_tween and move_tween.is_running():
+		is_moving = false
+		move_tween.kill()
+		move_tween = null
 	global_position = get_parent().get_node('SpawnPoint').global_position
 	lives -= 1
 	on_player_death.emit()
