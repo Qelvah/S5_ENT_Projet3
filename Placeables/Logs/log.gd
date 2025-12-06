@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 		dir = -1
 	var movement = speed * dir * delta
 	position.x += movement
-
+	
 	for player in on_log:
 		player.position.x += movement
 		player.water_safe = true

@@ -42,7 +42,7 @@ func initiate():
 		else:
 			car.global_position.x = global_position.x + offset
 			
-		get_parent().get_parent().get_node("Cars").add_child(car)
+		get_parent().get_parent().get_node("Cars").call_deferred("add_child", car)
 
 
 

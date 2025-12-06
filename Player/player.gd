@@ -51,6 +51,25 @@ func _process(_delta) -> void:
 func move_player(dir: Vector2):
 	is_moving = true
 
+	var space_state := get_world_2d().direct_space_state
+	var target_pos: Vector2 = global_position + dir * speed
+
+	var shape: Shape2D = $CollisionShape2D.shape
+	var params := PhysicsShapeQueryParameters2D.new()
+	params.shape = shape
+	params.exclude = [self]
+
+	var transform: Transform2D = $CollisionShape2D.global_transform
+	transform.origin = target_pos
+	params.transform = transform
+
+	var result := space_state.intersect_shape(params, 1)
+
+	if result.size() > 0:
+		print("Blocked by: ", result[0].collider)
+		is_moving = false
+		return
+
 	# Oriente le sprite selon la direction
 	if dir == Vector2.UP:
 		rotation_degrees = 0
@@ -62,7 +81,7 @@ func move_player(dir: Vector2):
 		rotation_degrees = 90
 
 	# Position d'arrivée
-	var target_pos: Vector2 = position + dir * speed
+	target_pos = position + dir * speed
 	if (log_partner != null):
 		target_pos += Vector2(log_partner.speed * (-1 if log_partner.is_left else 1) * 0.2, 0)	
 	# Animation de saut
