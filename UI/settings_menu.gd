@@ -88,11 +88,13 @@ func _input(event):
 			if resolutionDropdown.selected > 0:
 				resolutionDropdown.select(resolutionDropdown.selected - 1)
 				DisplayServer.window_set_size(resolutions[resolutionDropdown.selected])
+				save_resolution_setting(resolutionDropdown.selected)
 
 		elif (event.keycode in [KEY_D, KEY_RIGHT]) and ButtonIndex == 1:
 			if resolutionDropdown.selected < resolutions.size() - 1:
 				resolutionDropdown.select(resolutionDropdown.selected + 1)
 				DisplayServer.window_set_size(resolutions[resolutionDropdown.selected])
+				save_resolution_setting(resolutionDropdown.selected)
 
 		# Change le focus (joue un son)
 		if previousIndex != ButtonIndex:

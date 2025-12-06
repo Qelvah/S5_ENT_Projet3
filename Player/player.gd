@@ -23,6 +23,9 @@ signal on_player_gameover                  # Émis lorsque le joueur n’a plus 
 #      FONCTIONS PRINCIPALES
 # ----------------------------
 func _process(_delta) -> void:
+	if (is_out_of_bound()):
+		die()
+		
 	# Ne traite pas de nouvelle entrée si un mouvement est en cours
 	if is_moving:
 		return
@@ -137,3 +140,12 @@ func respawn():
 	
 	# Remet dans l'animation Idle
 	$Sprite.animation = "idle"
+	
+# ----------------------------
+#       OOB Check
+# ----------------------------
+func is_out_of_bound():
+	var x_check = position.x < 0 or position.x > DisplayServer.window_get_size().x
+	var y_check = position.y < 0 or position.y > DisplayServer.window_get_size().y
+	
+	return (x_check or y_check)
