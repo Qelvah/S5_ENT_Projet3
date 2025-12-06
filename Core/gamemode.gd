@@ -7,7 +7,7 @@ class_name Gamemode
 var score: int = 0     
 var end_reach_amount: int = 0                                        		# Score actuel du joueur
 var main_menu_scene: PackedScene = load("res://UI/main_menu.tscn")    # Scène du menu principal
-var loop: int = 1
+var loop: int = 0
 
 
 
@@ -41,8 +41,11 @@ func on_player_death() -> void:
 #    GESTION DES FINS ATTEINTES
 # ----------------------------
 func on_an_end_reached() -> void:
+	if (loop > 0):
+		add_score(450)
+		print(loop)
+		
 	end_reach_amount += 1
-	add_score(3)
 	if end_reach_amount == 5 :
 		finish_loop()
 	else:

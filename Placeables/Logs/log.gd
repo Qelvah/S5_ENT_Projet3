@@ -4,7 +4,7 @@ class_name Log
 @export var is_left: bool = false
 @export var speed = 50
 
-var camera_offset: int = 50
+var camera_offset: int = 25
 var limit: int = 256 + camera_offset
 
 var dir: int = 1
@@ -22,6 +22,9 @@ func _process(delta: float) -> void:
 		player.water_safe = true
 		
 	if position.x >= limit or position.x <= -limit:
+		if (!on_log.is_empty()):
+			for player in on_log:
+				player.die()
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

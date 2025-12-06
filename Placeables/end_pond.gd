@@ -24,7 +24,6 @@ func _on_player_entered(_player: Node2D) -> void:
 
 	# Émet le signal pour prévenir le jeu que le joueur a atteint la zone.
 	on_player_reach.emit()
-	
 	monitoring = false
 
 # -----------------------------------
