@@ -11,6 +11,7 @@ var lives: int = 3                         # Nombre de vies du joueur
 var log_partners : Array = []
 var water_safe = false
 var move_tween: Tween = null               # Tween responsable du déplacement
+var world_bounds = Rect2(0, 0, 256, 256)
 
 # ----------------------------
 #          SIGNAUX
@@ -145,7 +146,8 @@ func respawn():
 #       OOB Check
 # ----------------------------
 func is_out_of_bound():
-	var x_check = position.x < 0 or position.x > DisplayServer.window_get_size().x
-	var y_check = position.y < 0 or position.y > DisplayServer.window_get_size().y
-	
-	return (x_check or y_check)
+	#var x_check = position.x < 0 or position.x > DisplayServer.window_get_size().x
+	#var y_check = position.y < 0 or position.y > DisplayServer.window_get_size().y
+	#
+	#return (x_check or y_check)
+	return not world_bounds.has_point(global_position)
