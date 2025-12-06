@@ -1,4 +1,5 @@
 extends Area2D
+class_name Log
 
 @export var is_left: bool = false
 @export var speed = 50
@@ -24,12 +25,14 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	body.log_partner = self
-	body.water_safe = true
-	on_log.append(body)
+	if (body is Player and self not in body.log_partners):
+		body.log_partners.append(self)
+		body.water_safe = true
+		on_log.append(body)
 
 
 func _on_body_exited(body: Node2D) -> void:
-	body.log_partner = null
-	body.water_safe = false
-	on_log.erase(body)
+	if (body is Player):
+		body.log_partners.erase(self)
+		body.water_safe = false
+		on_log.erase(body)

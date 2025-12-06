@@ -8,7 +8,7 @@ var is_moving: bool = false					# Vérifie si un mouvement est déjà en cours
 var is_hit: bool = false             		# Vérifie si le joueur est déjà touché
 var speed: int = 16                        # Distance parcourue par saut
 var lives: int = 3                         # Nombre de vies du joueur
-var log_partner : Node = null
+var log_partners : Array = []
 var water_safe = false
 var move_tween: Tween = null               # Tween responsable du déplacement
 
@@ -82,8 +82,12 @@ func move_player(dir: Vector2):
 
 	# Position d'arrivée
 	target_pos = position + dir * speed
-	if (log_partner != null):
-		target_pos += Vector2(log_partner.speed * (-1 if log_partner.is_left else 1) * 0.2, 0)	
+	
+	# Adjust based on log collision
+	if (!log_partners.is_empty()):
+		for log in log_partners:
+			if log is Log and log.speed:
+				target_pos += Vector2(log.speed * (-1 if log.is_left else 1) * 0.2, 0)
 	# Animation de saut
 	$Sprite.animation = "jump"
 
